@@ -75,6 +75,14 @@ module.exports = configure(function (ctx) {
       // analyze: true,
 
       // Options below are automatically set depending on the env, set them if you want to override
+      // https://quasar.dev/quasar-cli-webpack/handling-process-env
+      /* env: {
+        // VUE_APP_TITLE: 'Quasar'
+        VUE_APP_TITLE: process.env.VUE_APP_TITLE
+      } */
+
+      env: require('dotenv').config().parsed,
+
       // extractCSS: false,
 
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
@@ -93,7 +101,22 @@ module.exports = configure(function (ctx) {
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
-      config: {},
+      config: {
+        brand: {
+          primary: process.env.VUE_APP_BRAND_COLOR_PRIMARY,
+          secondary: process.env.VUE_APP_BRAND_COLOR_SECONDARY,
+          accent: process.env.VUE_APP_BRAND_COLOR_ACCENT,
+
+          dark: process.env.VUE_APP_BRAND_COLOR_DARK,
+
+          positive: process.env.VUE_APP_BRAND_COLOR_POSITIVE,
+          negative: process.env.VUE_APP_BRAND_COLOR_NEGATIVE,
+          info: process.env.VUE_APP_BRAND_COLOR_INFO,
+          warning: process.env.VUE_APP_BRAND_COLOR_WARNING
+        },
+        dark: process.env.VUE_APP_DARK,
+      },
+
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -144,9 +167,9 @@ module.exports = configure(function (ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Union Eam',
-        short_name: 'Union Eam',
-        description: '',
+        name: process.env.VUE_APP_TITLE,
+        short_name: process.env.VUE_APP_TITLE_SHORT,
+        description: process.env.VUE_APP_DESCRIPTION,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

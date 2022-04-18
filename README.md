@@ -1,6 +1,6 @@
-# Union Eam (quasar-unuon-eam)
+# Quasar Framework (quasar-framework)
 
-Union Eam
+Quasar Framework
 
 ## Install the dependencies
 
