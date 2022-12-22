@@ -1,28 +1,21 @@
 <template>
   <q-toggle
     v-model="isThemeDark"
-    @click="toggleLeftDrawer"
-    label="Toggle Theme"
+    size="xl"
+    :icon="isThemeDark ? 'dark_mode' : 'light_mode'"
+    :label="isThemeDark ? 'dark' : 'light'"
+    @click="toggleTheme"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 
-export default defineComponent({
-  name: 'ThemeToggler',
+const $q = useQuasar()
+const isThemeDark = ref(true)
 
-  setup() {
-    const $q = useQuasar()
-    const isThemeDark = ref(true)
-
-    return {
-      isThemeDark,
-      toggleLeftDrawer() {
-        $q.dark.toggle()
-      }
-    }
-  }
-})
+const toggleTheme = () => {
+  $q.dark.toggle()
+}
 </script>
